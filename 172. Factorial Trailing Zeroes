@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int trailingZeroes(int n) {
+        int num = 0;
+        for(int i = 5; i<=n; ) {
+            int check = i;
+            while(check && check%5 == 0) {
+                num++;
+                check = check/5;
+            }
+            i +=5;
+        }
+        return num;
+    }
+};
