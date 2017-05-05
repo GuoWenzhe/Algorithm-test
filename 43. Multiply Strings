@@ -1,0 +1,63 @@
+class Solution {
+    
+vector<int> changeStringToVector(string num, vector<int> vector) {
+    int length = num.length();
+    for(int i = 0; i<length; i++){
+        vector.push_back(num[i]-'0');
+    }
+    return vector;
+}
+public:
+    string multiply(string num1, string num2) {
+        int length1 = num1.length();
+        int length2 = num2.length();
+        // Create a vector containing integers
+        std::vector<int> v_num1;
+        std::vector<int> v_num2;
+        string retString;
+
+        v_num1 = changeStringToVector(num1, v_num1);
+        v_num2 = changeStringToVector(num2, v_num2);
+    
+        // Iterate and print values of vector
+        std::vector<int> finalNum;
+        int finallength = length1+length2;
+        finalNum.resize(finallength);
+    
+        for(int i = 0; i< length1; i++) {
+           for(int j = 0; j< length2; j++) {
+    
+               finalNum[finallength-i-j-2] += v_num1[i]*v_num2[j];
+               /*cout<<"v_num1 "<<v_num1[i] <<"  "<<"v_num2 "<<v_num2[j] <<endl
+                   << finalNum[finallength-i-j-2] <<endl;*/
+           }
+        }
+    
+        for(int i = 0; i< finallength; i ++) {
+            int a = finalNum[i]/10;
+            int b = finalNum[i]%10;
+            if(a) {
+                finalNum[i] = b;
+                finalNum[i+1] += a; 
+            }
+        }
+        
+        
+        for(int i = finallength-1; i> 0; i--) {
+            if (finalNum[i] == 0){
+                finallength --;
+            }
+            else {
+                break;
+            }
+        }
+
+        for(int i = 0; i<finallength; i++) {
+            cout<<"i =  "<<i<<"num is "<<finalNum[finallength-i-1]<<endl;
+            retString.push_back(finalNum[finallength-i-1] +'0');
+        }
+        cout<<"string is "<<retString;
+        return retString;
+    }
+    
+};
